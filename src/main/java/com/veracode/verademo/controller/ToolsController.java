@@ -62,13 +62,16 @@ public class ToolsController {
 
 
 			InputStreamReader isr = new InputStreamReader(proc.getInputStream());
-			BufferedReader br = new BufferedReader(isr);
-
-			String line;
-
-			while ((line = br.readLine()) != null) {
-				output += line + "\n";
-			}
+try (
+try (
+    BufferedReader br = new BufferedReader(isr)) {
+    
+    			String line;
+    
+    			while ((line = br.readLine()) != null) {
+    				output += line + "\n";
+    			}
+     		}
 		}
 		catch (IOException ex) {
 			logger.error(ex);
@@ -96,11 +99,12 @@ public class ToolsController {
 			/* END BAD CODE */
 
 			InputStreamReader isr = new InputStreamReader(proc.getInputStream());
-			BufferedReader br = new BufferedReader(isr);
-
-			String line;
-
-			while ((line = br.readLine()) != null) {
+			try (BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
+    
+    			String line;
+    
+    			while ((line = br.readLine()) != null) {
+     		}
 				output += line + "\n";
 			}
 		}

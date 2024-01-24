@@ -1,1 +1,5 @@
 .DS_Store
+pipeline-scan.jar
+results.json
+filtered_results.json
+/target
